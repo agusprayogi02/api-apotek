@@ -13,8 +13,11 @@ type Routes struct {
 
 func (r Routes) GetRoutes() *gin.Engine {
 	router := gin.Default()
+
 	v1 := router.Group("v1")
 	v1.GET("/user", r.user.ViewAllUsers)
+	v1.POST("/user/create", r.user.CreateUser)
+
 	router.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"data":   "Welcome to gin gonic Backend",

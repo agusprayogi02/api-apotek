@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"api-apotek/entity"
 	"api-apotek/model"
 	"api-apotek/utils"
 	"net/http"
@@ -13,9 +14,29 @@ type UserController struct {
 }
 
 func (e *UserController) ViewAllUsers(c *gin.Context) {
-	users, err := e.userModel.GetUsers(c)
+	users, err := e.userModel.GetUsers()
 	if err != nil {
 		utils.HandleError(c, http.StatusNotFound, "Not Found")
+		return
 	}
 	utils.Success(c, users)
+}
+
+func (e *UserController) CreateUser(c *gin.Context) {
+	var user = entity.User{}
+	err := c.BindJSON(user)
+	if err != nil {
+		utils.HandleError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	if user.Name == "" || user.Email == "" || user.Password == "" {
+		utils.HandleError(c, http.StatusBadRequest, "Field are Required!")
+		return
+	}
+	mUser, err := e.userModel.AddUsers(&user)
+	if err != nil {
+		utils.HandleError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	utils.Success(c, mUser)
 }
