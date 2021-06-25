@@ -1,2 +1,2 @@
 # api-apotek
-Backend Api with Golang
+Backend Api with Golang Gin-Gonic Framework
