@@ -41,10 +41,12 @@ func GetSecretKey() string {
 
 func (service *JwtServices) GenerateToken(email string, isUser bool) string {
 	claims := &AuthCustomClaims{email, isUser, jwt.StandardClaims{
-		ExpiresAt: jwt.NewTime(float64(time.Hour * 12)),
+		ExpiresAt: jwt.NewTime(float64(jwt.Now().Add(time.Hour * 12).Unix())),
 		Issuer:    service.Issuer,
 		IssuedAt:  jwt.Now(),
 	}}
+	// fmt.Println(jwt.NewTime(float64(jwt.Now().Add(time.Hour*12).Unix())), "  ", jwt.Now())
+	// fmt.Println(time.Now())
 	token := jwt.NewWithClaims(jwt.SigningMethodHS512, claims)
 
 	t, err := token.SignedString([]byte(service.SecretKey))

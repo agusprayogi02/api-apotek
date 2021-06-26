@@ -2,6 +2,7 @@ package routes
 
 import (
 	"api-apotek/controller"
+	"api-apotek/middleware"
 	"api-apotek/service"
 	"net/http"
 
@@ -18,6 +19,10 @@ func (r Routes) GetRoutes() *gin.Engine {
 	var loginController = controller.LoginHandler(loginService, jwtService)
 
 	router := gin.Default()
+
+	admin := router.Group("admin")
+	admin.Use(middleware.AuthorizeJWT())
+	admin.GET("/user", r.user.ViewAllUsers)
 
 	v1 := router.Group("v1")
 	v1.GET("/user", r.user.ViewAllUsers)
