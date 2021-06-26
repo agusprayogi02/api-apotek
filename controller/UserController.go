@@ -24,15 +24,16 @@ func (e *UserController) ViewAllUsers(c *gin.Context) {
 
 func (e *UserController) CreateUser(c *gin.Context) {
 	var user = entity.User{}
-	err := c.BindJSON(user)
+	err := c.ShouldBind(&user)
 	if err != nil {
 		utils.HandleError(c, http.StatusInternalServerError, err.Error())
 		return
 	}
-	if user.Name == "" || user.Email == "" || user.Password == "" {
+	if user.Nama == "" || user.Email == "" || user.Password == "" {
 		utils.HandleError(c, http.StatusBadRequest, "Field are Required!")
 		return
 	}
+	user.Password = utils.Encrypt(user.Password, utils.GetRandKey())
 	mUser, err := e.userModel.AddUsers(&user)
 	if err != nil {
 		utils.HandleError(c, http.StatusInternalServerError, err.Error())

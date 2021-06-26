@@ -10,7 +10,8 @@ import (
 
 func StartApp() *gin.Engine {
 	os.Setenv("secret", "gin-apotek-bro0")
-	config.DatabaseConfig.GetDatabase(config.DatabaseConfig{})
+	db := config.DatabaseConfig.GetDatabase(config.DatabaseConfig{})
+	config.MigrateDB(db)
 
 	app := routes.Routes.GetRoutes(routes.Routes{})
 	return app

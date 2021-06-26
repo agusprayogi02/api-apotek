@@ -19,7 +19,7 @@ func (r Routes) GetRoutes() *gin.Engine {
 	var loginController = controller.LoginHandler(loginService, jwtService)
 
 	router := gin.Default()
-
+	gin.SetMode(gin.ReleaseMode)
 	admin := router.Group("admin")
 	admin.Use(middleware.AuthorizeJWT())
 	admin.GET("/user", r.user.ViewAllUsers)

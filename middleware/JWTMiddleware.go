@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/dgrijalva/jwt-go/v4"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,7 +17,7 @@ func AuthorizeJWT() gin.HandlerFunc {
 			return
 		}
 		str := utils.ExtactToken(authHeader)
-		fmt.Println(str)
+		// fmt.Println(str)
 		if str == "" {
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
@@ -29,8 +28,8 @@ func AuthorizeJWT() gin.HandlerFunc {
 			c.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
-		claims := token.Claims.(jwt.MapClaims)
-		fmt.Println(claims)
+		// claims := token.Claims.(jwt.MapClaims)
+		// fmt.Println(claims)
 		c.Next()
 	}
 }

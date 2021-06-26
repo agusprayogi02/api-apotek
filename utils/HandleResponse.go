@@ -1,14 +1,14 @@
 package utils
 
 import (
-	"api-apotek/model"
+	"api-apotek/dto"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 func Success(c *gin.Context, data interface{}) {
-	res := model.ResponseGeneric{
+	res := dto.ResponseGeneric{
 		Status:  "Success",
 		Message: "Loaded",
 		Data:    data,
@@ -17,7 +17,7 @@ func Success(c *gin.Context, data interface{}) {
 }
 
 func HandleError(c *gin.Context, status int, message string) {
-	res := model.ResponseGeneric{
+	res := dto.ResponseGeneric{
 		Status:  "Failed",
 		Message: message,
 	}

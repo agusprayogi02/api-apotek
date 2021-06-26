@@ -4,9 +4,9 @@ import "gorm.io/gorm"
 
 type User struct {
 	gorm.Model
-	Name     string `gorm:"not null" json:"name"`
-	Email    string `gorm:"not null" json:"email"`
-	Password string `gorm:"not null" json:"password"`
+	Nama     string `gorm:"type:varchar(100) not null"`
+	Email    string `gorm:"uniqueIndex:idx_email;type:varchar(100) not null"`
+	Password string `gorm:"size:225;not null"`
 }
 
 func (e User) TableName() string {

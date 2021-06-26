@@ -21,7 +21,7 @@ func (e *UserModel) GetUsers() (*[]entity.User, error) {
 }
 
 func (e *UserModel) AddUsers(user *entity.User) (*entity.User, error) {
-	err := e.db.GetDatabase().Save(&user).Error
+	err := e.db.GetDatabase().Create(&user).Error
 	if err != nil {
 		fmt.Println(err.Error())
 		return nil, err

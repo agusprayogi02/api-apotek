@@ -1,4 +1,4 @@
-package model
+package dto
 
 type ResponseGeneric struct {
 	Status  string      `json:"status"`
