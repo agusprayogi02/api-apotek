@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"api-apotek/dto"
+	"api-apotek/data/dto"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

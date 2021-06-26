@@ -2,7 +2,7 @@ package model
 
 import (
 	"api-apotek/config"
-	"api-apotek/entity"
+	"api-apotek/data/entity"
 	"fmt"
 )
 

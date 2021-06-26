@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"api-apotek/dto"
+	"api-apotek/data/dto"
 	"api-apotek/service"
 
 	"github.com/gin-gonic/gin"

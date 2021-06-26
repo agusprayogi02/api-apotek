@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"api-apotek/entity"
-	"api-apotek/model"
+	"api-apotek/data/entity"
+	"api-apotek/data/model"
 	"api-apotek/utils"
 	"net/http"
 

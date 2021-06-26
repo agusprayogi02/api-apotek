@@ -1,7 +1,7 @@
 package config
 
 import (
-	"api-apotek/entity"
+	"api-apotek/data/entity"
 	"fmt"
 	"log"
 
