@@ -11,6 +11,7 @@ import (
 
 type Routes struct {
 	user controller.UserController
+	toko controller.TokoController
 }
 
 func (r Routes) GetRoutes() *gin.Engine {
@@ -20,9 +21,10 @@ func (r Routes) GetRoutes() *gin.Engine {
 
 	router := gin.Default()
 	gin.SetMode(gin.ReleaseMode)
-	admin := router.Group("admin")
-	admin.Use(middleware.AuthorizeJWT())
-	admin.GET("/user", r.user.ViewAllUsers)
+	v2 := router.Group("v2")
+	v2.Use(middleware.AuthorizeJWT())
+	v2.GET("/users", r.user.ViewAllUsers)
+	v2.GET("/toko", r.toko.GetAllToko)
 
 	v1 := router.Group("v1")
 	v1.GET("/user", r.user.ViewAllUsers)
