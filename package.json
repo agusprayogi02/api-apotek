@@ -1,0 +1,11 @@
+{
+  "name": "api-apotek",
+  "description": "untuk debagging server golang",
+  "authors": "Agus Prayogi",
+  "version": "1.0.0",
+  "main": "main.go",
+  "dependencies": {},
+  "scripts": {
+    "start": "nodemon --exec go run main.go --signal SIGTERM"
+  }
+}
